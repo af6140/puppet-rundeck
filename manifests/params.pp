@@ -34,10 +34,10 @@ class rundeck::params {
   $rdeck_home = '/var/lib/rundeck'
   $service_logs_dir = '/var/log/rundeck'
 
-  $rdeck_uuid = $facts['serialnumber'] ? {
+  $rdeck_uuid = $::serialnumber ? {
     '0'     => fqdn_uuid($::fqdn),
     undef   => fqdn_uuid($::fqdn),
-    default => $facts['serialnumber'],
+    default => $::serialnumber,
   }
 
   $framework_config = {

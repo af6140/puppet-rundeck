@@ -21,8 +21,6 @@ describe 'rundeck' do
         case facts[:os]['family']
         when 'RedHat'
           it { is_expected.to contain_yumrepo('bintray-rundeck') }
-        when 'Debian'
-          it { is_expected.to contain_apt__source('bintray-rundeck').with_location('https://dl.bintray.com/rundeck/rundeck-deb') }
         end
       end
       describe 'different user and group' do

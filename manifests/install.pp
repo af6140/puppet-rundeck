@@ -50,19 +50,6 @@ class rundeck::install(
       ensure_resource('package', 'rundeck-config', {'ensure' => $package_ensure, notify => Class['rundeck::service'] } )
     }
     'Debian': {
-      if $manage_repo == true {
-        include ::apt
-        apt::source { 'bintray-rundeck':
-          location => 'https://dl.bintray.com/rundeck/rundeck-deb',
-          release  => '/',
-          repos    => '',
-          key      => {
-            id     => '8756C4F765C9AC3CB6B85D62379CE192D401AB61',
-            server => 'keyserver.ubuntu.com',
-          },
-          before   => Package['rundeck'],
-        }
-      }
       ensure_resource('package', 'rundeck', {'ensure' => $package_ensure, notify => Class['rundeck::service'], require => Class[Apt::Update] } )
     }
     default: {
